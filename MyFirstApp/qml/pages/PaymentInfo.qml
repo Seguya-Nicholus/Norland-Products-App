@@ -170,6 +170,11 @@ Page {
                 width: parent.width * 0.2
                 minimumWidth: parent.width * 0.2
                 height: parent.height
+
+                onClicked: {
+                 navigationStack.push(navigationPage)
+
+                }
             }
 
         }
@@ -378,5 +383,11 @@ Page {
                 }
             }
         }
+    }
+
+
+    Component {
+        id: navigationPage
+        NavigationPage {}
     }
 }

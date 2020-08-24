@@ -151,59 +151,62 @@ Page {
 
                 AppText {
                     id:upperSection
-                    text: "<b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit."
-                    font.pixelSize: sp(13)
+                    text: IconType.arrowright + "  Stabilize blood sugar by smoothly lowering it."
+                    font.pixelSize: sp(15)
                     color: "#777777"
 
                 }
 
                 AppText {
                     id:thirdtext
-                    text: "Sed velit nulla, ornare vitae port vitae, pulvinar nec null."
-                    font.pixelSize: sp(13)
+                    text:IconType.arrowright +  " Activate pancreas islet (insulin producing cells)"
+                    font.pixelSize: sp(15)
                     color: "#777777"
                     anchors.top: upperSection.bottom
+                     anchors.topMargin: dp(5)
                 }
 
                 AppText{
                     id:secondtext
-                    text: "Nam ornare nisi in mi tempu, eget tristique neque laret."
-                    font.pixelSize: sp(13)
+                    text: IconType.arrowright + " Benefits people with impaired glucose tolerance"
+                    font.pixelSize: sp(15)
                     color: "#777777"
                     anchors.top: thirdtext.bottom
+                     anchors.topMargin: dp(5)
                 }
 
                 AppText {
                     id:upperSection1
-                    text: "Fusce dictum dolor sit amet, consectetur adipiscing elit."
-                    font.pixelSize: sp(13)
+                    text: "and type 2 diabetes."
+                    font.pixelSize: sp(15)
                     color: "#777777"
                     anchors.top: secondtext.bottom
 
                 }
                 AppText{
                     id:secondtext1
-                    text: "Nam ornare nisi in mi tempus, eget tristique neque laret."
-                    font.pixelSize: sp(13)
+                    text: IconType.arrowright + " Prevents complications of diabetes."
+                    font.pixelSize: sp(15)
                     color: "#777777"
                     anchors.top: upperSection1.bottom
+                    anchors.topMargin: dp(5)
                 }
 
-                AppText {
-                    id:thirdtext1
-                    text: "Sed velit nulla, ornare vitae porta vitae, pulvinar nec nulla."
-                    font.pixelSize: sp(13)
-                    color: "#777777"
-                    anchors.top: secondtext1.bottom
-                }
+//                AppText {
+//                    id:thirdtext1
+//                    text: "Sed velit nulla, ornare vitae porta vitae, pulvinar nec nulla."
+//                    font.pixelSize: sp(13)
+//                    color: "#777777"
+//                    anchors.top: secondtext1.bottom
+//                }
 
-                AppText {
-                    id: forthtext1
-                    text: "Nam nisl purus, ultricies in nulla sit amet, sodales purus."
-                    font.pixelSize: sp(13)
-                    color: "#777777"
-                    anchors.top: thirdtext1.bottom
-                }
+//                AppText {
+//                    id: forthtext1
+//                    text: "Nam nisl purus, ultricies in nulla sit amet, sodales purus."
+//                    font.pixelSize: sp(13)
+//                    color: "#777777"
+//                    anchors.top: thirdtext1.bottom
+//                }
             }
         }
     }
@@ -240,7 +243,6 @@ Page {
                     onClicked: {
                         navigationStack.push(audioPage)
                     }
-
                 }
 
                 AppButton {
@@ -273,24 +275,13 @@ Page {
                     color: "#E9FAFF"
 
                     ListPage {
-                        //some JS array as list model
-            //            model: [{
-            //                    text: IconType.arrowright + "  Swipe to Buy",
-            //                    backgroundColor:"black"
-
-            //                }]
-
                         model: AppButton {
-                                text: IconType.arrowright + "  Swipe to Buy "
-                                backgroundColor: "#000000"
-                                textSize: sp(20)
-
-
-                                radius: dp(18)
-                                minimumWidth: parent.width * 0.9
-                                }
-
-
+                            text: IconType.arrowright + "  Swipe to Buy "
+                            backgroundColor: "#000000"
+                            textSize: sp(20)
+                            radius: dp(18)
+                            minimumWidth: parent.width * 0.9
+                        }
 
                         // define the SwipeOptionsContainer as delegate
                         delegate: SwipeOptionsContainer {
@@ -299,12 +290,7 @@ Page {
 
                             SimpleRow {                         //actual content to be displayed in the list rows
                                 id: row
-
-
                             }
-
-
-
 
                             leftOption: AppButton {           //left options, displayed when swiped list row to the right
                                 text: "UGX 230,000"
@@ -312,17 +298,7 @@ Page {
                                 backgroundColor: "black"
                                 minimumWidth: parent.width * 0.9
                                 height: row.height
-            //                    Rectangle{
-            //                        width: parent.width * 0.9
-            //                        anchors.fill: parent
-            //                        color: "black"
-
-
-            //                    }
                                 onClicked: {
-//                                    row.item.text = "Option clicked"
-//                                    row.itemChanged()
-//                                    container.hideOptions()         //hide automatically when button clicked
                                     navigationStack.push(paymentPage)
                                 }
                             }
@@ -331,49 +307,7 @@ Page {
                     } // ListPage
 
                 }
-
-//                AppButton {
-//                    id:buttonMain
-//                    anchors.centerIn: parent
-//                    minimumWidth: parent.width * 0.9
-//                    width: parent.width * 0.9
-//                    height: parent.height
-//                    radius: dp(25)
-//                    backgroundColor: "#000000"
-
-
-//                    AppText{
-//                        text: "UGX 230,000"
-//                        color : "#FFFFFF"
-//                        anchors.verticalCenter:  parent.verticalCenter
-//                        anchors.left:  parent.left
-//                        anchors.leftMargin: dp(30)
-//                        font.pixelSize: sp(20)
-//                        font.bold: true
-//                    }
-
-
-
-//                    SwipeButton {
-//                        id:btn
-//                        anchors.verticalCenter: parent.verticalCenter
-//                        anchors.right:  parent.right
-//                        text: "<b>"+IconType.arrowright + "  Swipe to buy</b>"
-//                        textSize: sp(18)
-//                        minimumWidth: parent.width * 0.5
-//                        width: parent.width * 0.5
-//                        height: parent.height * 0.3
-//                        fontCapitalization : Font.Capitalize
-
-//                        radius:dp(25)
-//                        backgroundColor: "#999999"
-//                        textColor : "#FFFFFF"
-//                        hideOptionsOnClick : true
-//                    }
-//                } // End of Swipe Button
             }
-
-
         }
 
 
@@ -422,7 +356,7 @@ Page {
 
     Component {
         id: paymentPage
-          PaymentInfo{}
+        PaymentInfo{}
     }
 
 
