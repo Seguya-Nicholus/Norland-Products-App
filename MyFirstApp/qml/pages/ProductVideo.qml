@@ -6,7 +6,8 @@ Page {
     title: "Product Video"
 
     YouTubeWebPlayer {
-        videoId: "KQgqTYCfJjM"
+//        videoId: "KQgqTYCfJjM"
+        videoId: "xSiWqugQY4Y"
         autoplay: true
     }
 
