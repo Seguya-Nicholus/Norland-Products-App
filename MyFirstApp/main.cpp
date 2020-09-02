@@ -1,7 +1,13 @@
 #include <QApplication>
 #include <FelgoApplication>
 
+#include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QDebug>
+
+#include "database.h"
+
 
 // uncomment this line to add the Live Client Module and use live reloading with your custom C++ code
 //#include <FelgoLiveClient>
@@ -38,6 +44,14 @@ int main(int argc, char *argv[])
     // to start your project as Live Client, comment (remove) the lines "felgo.setMainQmlFileName ..." & "engine.load ...",
     // and uncomment the line below
     //FelgoLiveClient client (&engine);
+
+    //Instantiate the Database Object to Create Database
+    Database database;
+    database.createDbPath();
+    database.connectToDataBase();
+
+
+    engine.rootContext()->setContextProperty("database", &database);
 
     return app.exec();
 }
