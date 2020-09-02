@@ -1,6 +1,5 @@
 import Felgo 3.0
 import QtQuick 2.0
-//import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.1
 import QtGraphicalEffects 1.12
 import QtQuick.Dialogs 1.2
@@ -197,9 +196,20 @@ Page {
             popup.open()
             clearInputs()
         }
-        else if(phoneNumber === "0700000000" && password === "123")
+        else if(phoneNumber !== "" && password !== "")
         {
-            navigationStack.push(dashboard)
+            //            database.loginUser(loginUsername.text, loginPassword.text)
+            if(database.loginUser(loginUsername.text, loginPassword.text))
+            {
+                navigationStack.push(dashboard)
+            }
+            else
+            {
+                popup.text = "Wrong Username and Password!"
+                popup.open()
+            }
+
+
         }
         else
         {

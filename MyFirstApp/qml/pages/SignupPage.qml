@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Felgo 3.0
 import QtQuick.Layouts 1.3
+import QtQuick.Dialogs 1.2
 
 Page {
 
@@ -57,7 +58,7 @@ Page {
 
                 // input Username
                 AppTextField {
-                    id: usernameEdit
+                    id: signupUsername
                     width: parent.width * 0.7
                     placeholderText: qsTr(""+IconType.user + "   Username   ")
                     anchors.centerIn: parent.Center
@@ -75,7 +76,7 @@ Page {
 
                 // input Phone number
                 AppTextField {
-                    id: numberEdit
+                    id: signupPhoneNumber
                     width: parent.width * 0.7
                     placeholderText: qsTr(""+IconType.phone + "   Phone Number ")
                     anchors.top: parent.top
@@ -92,7 +93,7 @@ Page {
 
                 // input Password
                 AppTextField {
-                    id: passwordEdit
+                    id: signupPassword
                     width: parent.width * 0.7
                     placeholderText: qsTr(""+IconType.lock + "   Password    ")
                     anchors.centerIn: parent
@@ -114,7 +115,7 @@ Page {
 
                 // input Country of origin
                 AppTextField {
-                    id: countryEdit
+                    id: signupCountry
                     width: parent.width * 0.7
                     placeholderText: qsTr(""+IconType.globe + "   Country                            ")
                     anchors.centerIn: parent
@@ -151,6 +152,7 @@ Page {
                     width: parent.width * 0.9
                     backgroundColor: "#005BAC"
                     onClicked: {
+                        validateUserInputs(signupUsername.text,signupPhoneNumber.text,signupPassword.text,signupCountry.text)
                         navigationStack.push(loginPage)
                     }
                 }
@@ -186,6 +188,88 @@ Page {
         }
 
     }
+
+
+
+
+    //Popup to show messages or warnings on the screen
+
+
+    MessageDialog {
+        id: popup
+        title: "Create New User"
+        icon: StandardIcon.Critical
+        text: ""
+        standardButtons: StandardButton.Ok
+    }
+
+    MessageDialog {
+        id: popup1
+        title: "Create New User"
+        icon: StandardIcon.Information
+        text: ""
+        standardButtons: StandardButton.Ok
+    }
+
+    function clearInputs()
+    {
+        signupUsername.text = ""
+        signupPassword.text = ""
+        signupPhoneNumber.text = ""
+        signupCountry.text = ""
+        //        signupUsername.focus
+    }
+
+
+    //
+    function validateUserInputs(userName,phoneNumber,password,country)
+    {
+        if(userName !== "" && phoneNumber !== "" && password !== "" && country !== "")
+        {
+//            database.insertIntoUsersTable(userName,phoneNumber,password,country);
+            if(database.insertIntoUsersTable(userName,phoneNumber,password,country))
+            {
+                popup1.text = "User Created Successfully"
+                popup1.open()
+                clearInputs()
+
+            }
+
+
+            //            return
+        }
+        else
+        {
+            popup.text = "Some Fields are Missing!"
+            popup.open()
+            clearInputs()
+            return
+        }
+    }
+
+    //    // Login users
+    //    function loginUser(uname, pword)
+    //    {
+
+    //        if(uname !== "")
+    //        {
+    //            message = "User not registered!"
+    //            popup.popMessage = message
+    //            popup.open()
+    //        }
+    //        else if(pword !== "orban")
+    //        {
+    //            message = ""
+    //            popup.popMessage = message
+    //            popup.open()
+    //        }
+    //        else
+    //        {
+    //            console.log("Login Success!")
+
+    //        }
+    //    }
+
 
 }
 

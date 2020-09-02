@@ -1,3 +1,4 @@
+QT += quick sql
 # allows to add DEPLOYMENTFOLDERS and links to the Felgo library and QtCreator auto-completion
 CONFIG += felgo
 
@@ -38,7 +39,8 @@ DEPLOYMENTFOLDERS += assetsFolder
 
 
 # The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    database.cpp
 
 
 android {
@@ -60,9 +62,16 @@ macx {
 }
 
 DISTFILES += \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew \
+    android/gradlew.bat \
     qml/pages/DashboardPage.qml \
     qml/pages/ProductAudio.qml \
     qml/pages/ProductInfoPage.qml \
     qml/pages/ProductsList.qml \
     qml/pages/SignupPage.qml \
     qml/pages/TestimonialsList.qml
+
+HEADERS += \
+    database.h

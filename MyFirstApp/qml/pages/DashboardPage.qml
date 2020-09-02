@@ -138,10 +138,13 @@ Page {
                         Layout.minimumHeight: parent.height
 
                         AppButton {
-                            text: IconType.building + " Product Trainning"
+                            text: "Training"
                             radius: dp(18)
-                            backgroundColor: "#6BEAFC"
-                            textColor : "#034083"
+                            //                            "#6BEAFC"
+                            backgroundColor: "#E9FAFF"
+                            textColor : "#0098C8"
+                            borderColor : "#9EB9D9"
+                            borderWidth: 1
                             wordWrap : true
                             flat: false
                             fontCapitalization: Font.Capitalize
@@ -158,10 +161,10 @@ Page {
                         Layout.minimumHeight: parent.height
 
                         AppButton {
-                            text: IconType.refresh + " Treatment Formula"
+                            text: "Treatment"
                             radius: dp(18)
                             backgroundColor: "#E9FAFF"
-                            textColor : "#034083"
+                            textColor : "#0098C8"
                             borderColor : "#9EB9D9"
                             borderWidth: 1
                             flat: false
@@ -182,17 +185,18 @@ Page {
 
 
                         AppButton {
-                            text: IconType.navicon + "  Testimonials"
+                            text: "Testimonials"
                             radius: dp(18)
                             backgroundColor: "#E9FAFF"
-                            textColor : "#034083"
+                            textColor : "#0098C8"
+                            textColorPressed: "#034083"
                             fontCapitalization : Font.Capitalize
                             borderColor : "#9EB9D9"
                             borderWidth: 1
+                            backgroundColorPressed : "#6BEAFC"
                         }
                     }
                 }
-
 
             }
 
@@ -738,7 +742,7 @@ Page {
                     icon: IconType.questioncircle
                 }
 
-                currentTab : NavigationItem
+//                currentTab : NavigationItem
                 NavigationItem {
                     id:navItem2
                     title: "Locate Us"
@@ -760,16 +764,16 @@ Page {
 
     Component {
         id: pageInfo
-            ProductInfoPage { }
+        ProductInfoPage { }
     }
 
     Component {
         id: pageTestimonials
-            TestimonialsList{}
+        TestimonialsList{}
     }
 
     Component {
         id: pageProducts
-            ProductsList{}
+        ProductsList{}
     }
 }

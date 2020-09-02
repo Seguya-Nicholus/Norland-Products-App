@@ -130,7 +130,7 @@ Page {
                         anchors.centerIn: parent
                         minimumWidth: parent.width * 0.9
                         anchors.horizontalCenter: parent.horizontalCenter
-                        text: "Login   |   Signup  " + IconType.arrowleft +""
+                        text: "Let's get Started     " + IconType.arrowleft
                         fontCapitalization : Font.Capitalize
                         textSize:sp(15)
                         radius: dp(18)

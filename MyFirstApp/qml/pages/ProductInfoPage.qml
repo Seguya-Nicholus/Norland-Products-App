@@ -326,7 +326,7 @@ Page {
                 icon: IconType.questioncircle
             }
 
-            currentTab : NavigationItem
+//            currentTab : NavigationItem
             NavigationItem {
                 id:navItem2
                 title: "Locate Us"
