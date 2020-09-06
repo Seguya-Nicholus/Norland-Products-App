@@ -153,7 +153,6 @@ Page {
                     backgroundColor: "#005BAC"
                     onClicked: {
                         validateUserInputs(signupUsername.text,signupPhoneNumber.text,signupPassword.text,signupCountry.text)
-                        navigationStack.push(loginPage)
                     }
                 }
             }
@@ -226,17 +225,15 @@ Page {
     {
         if(userName !== "" && phoneNumber !== "" && password !== "" && country !== "")
         {
-//            database.insertIntoUsersTable(userName,phoneNumber,password,country);
+            //            database.insertIntoUsersTable(userName,phoneNumber,password,country);
             if(database.insertIntoUsersTable(userName,phoneNumber,password,country))
             {
                 popup1.text = "User Created Successfully"
                 popup1.open()
                 clearInputs()
-
+                navigationStack.push(loginPage)
             }
 
-
-            //            return
         }
         else
         {
@@ -246,30 +243,6 @@ Page {
             return
         }
     }
-
-    //    // Login users
-    //    function loginUser(uname, pword)
-    //    {
-
-    //        if(uname !== "")
-    //        {
-    //            message = "User not registered!"
-    //            popup.popMessage = message
-    //            popup.open()
-    //        }
-    //        else if(pword !== "orban")
-    //        {
-    //            message = ""
-    //            popup.popMessage = message
-    //            popup.open()
-    //        }
-    //        else
-    //        {
-    //            console.log("Login Success!")
-
-    //        }
-    //    }
-
 
 }
 
