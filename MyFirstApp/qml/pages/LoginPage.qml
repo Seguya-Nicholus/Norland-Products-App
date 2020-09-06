@@ -110,6 +110,7 @@ Page {
                     backgroundColor: "#005BAC"
                     onClicked: {
                         validateUserCredentials(loginUsername.text, loginPassword.text)
+//                        navigationStack.push(dashboard)
                     }
                 }
 

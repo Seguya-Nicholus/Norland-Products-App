@@ -138,7 +138,7 @@ Page {
                         backgroundColor: "#005BAC"
 
                         onClicked: {
-                            mainPage.navigationStack.push(loginPage)
+                            mainPage.navigationStack.popAllExceptFirstAndPush(loginPage)
                         }
                     }
 
