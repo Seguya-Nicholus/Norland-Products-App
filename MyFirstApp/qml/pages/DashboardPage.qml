@@ -31,6 +31,7 @@ Page {
                 id:rectNavBar
                 anchors.top: parent.top
                 width: parent.width
+                radius: dp(15)
                 height: parent.height - rectbuttons.height - rectFeaturedLabel.height
                 color: "red"
 
@@ -49,7 +50,7 @@ Page {
                         anchors.topMargin: dp(20)
                         width: rectNavBar.width
                         height: rectNavBar.height
-                        //            radius: 8
+                                    radius: dp(8)
                         color: "#005BAC"
 
                         IconButtonBarItem{
@@ -101,7 +102,7 @@ Page {
 
                         AppText{
                             id: welcomeText2
-                            text: "Orban"
+                            text: database.getUsername(loginUsername.text, loginPassword.text)
                             font.family: "Emigre"
                             font.bold : true
                             color: "white"
@@ -143,11 +144,15 @@ Page {
                             //                            "#6BEAFC"
                             backgroundColor: "#E9FAFF"
                             textColor : "#0098C8"
+                            textColorPressed: "#034083"
+                            backgroundColorPressed : "#6BEAFC"
                             borderColor : "#9EB9D9"
                             borderWidth: 1
-                            wordWrap : true
+                            //                            wordWrap : true
                             flat: false
                             fontCapitalization: Font.Capitalize
+                            minimumWidth : parent.width * 0.95
+                            anchors.horizontalCenter: parent.horizontalCenter
 
                         }
                     }
@@ -165,11 +170,15 @@ Page {
                             radius: dp(18)
                             backgroundColor: "#E9FAFF"
                             textColor : "#0098C8"
+                            textColorPressed: "#034083"
+                            backgroundColorPressed : "#6BEAFC"
                             borderColor : "#9EB9D9"
                             borderWidth: 1
                             flat: false
-                            wordWrap: true
+                            //                            wordWrap: true
                             fontCapitalization: Font.Capitalize
+                            minimumWidth : parent.width * 0.95
+                            anchors.horizontalCenter: parent.horizontalCenter
                         }
 
                     }
@@ -190,10 +199,12 @@ Page {
                             backgroundColor: "#E9FAFF"
                             textColor : "#0098C8"
                             textColorPressed: "#034083"
+                            backgroundColorPressed : "#6BEAFC"
                             fontCapitalization : Font.Capitalize
                             borderColor : "#9EB9D9"
                             borderWidth: 1
-                            backgroundColorPressed : "#6BEAFC"
+                            minimumWidth : parent.width * 0.95
+                            anchors.horizontalCenter: parent.horizontalCenter
                         }
                     }
                 }
@@ -244,7 +255,7 @@ Page {
                         AppButton{
                             text: "View All  " + IconType.arrowright
                             backgroundColor: "#E9FAFF"
-                            textColor : "#034083"
+                            textColor : "#0098C8"
                             fontCapitalization : Font.Capitalize
                             borderColor : "#E9FAFF"
                             borderWidth: 1
@@ -264,15 +275,12 @@ Page {
             }
 
 
-
-
-
         } // End of Upper Section
 
         // ========== Middle Section to display text
-        Rectangle{
+        Rectangle {
             id:middleRect
-            anchors.bottom:  bottomRect.top
+            anchors.bottom: bottomRect.top
             width: parent.width
             height: parent.height /3
             color: "#E9FAFF"
@@ -281,229 +289,120 @@ Page {
                 anchors.top: parent.top
                 width: parent.width
                 height: parent.height * 0.88
-                color: "orange"
+                color: "#E9FAFF"
 
-                RowLayout {
-                    id: thirdRow
+                Rectangle{
                     anchors.fill: parent
-                    spacing: 2
-                    Rectangle {
-                        color: '#6BEAFC'
-                        Layout.fillWidth: true
-                        Layout.fillHeight:  true
-                        Layout.minimumWidth: parent.width * 0.329
-                        Layout.preferredWidth: parent.width * 0.329
-                        Layout.maximumWidth: parent.width * 0.329
-                        Layout.minimumHeight: parent.height
+                    anchors.bottomMargin:  dp(3)
+                    anchors.topMargin: dp(3)
+                    color: "#E9FAFF"
+                }
 
 
-                        AppButton{
-                            id:button1
-                            anchors.top: parent
-                            width: parent.width
-                            height: 200
+                AppListView {
+                    id:productsListview
+                    anchors.fill: parent
+                    orientation: AppListView.Horizontal
+                    spacing: dp(10)
+                    leftMargin: dp(10)
+                    rightMargin: dp(10)
+                    topMargin: dp(10)
 
-                            AppImage {
-                                id: img2
-                                anchors.top: parent
-                                anchors.fill: parent
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                source: '../../assets/product1_auto_x1.png'
-                                width: parent.width
-                                height: button1.height
-                                fillMode: Image.PreserveAspectCrop
-                                layer.enabled: true
+                    model: ProductModel
+                    delegate: Rectangle {
+                        id: rectProduct
+                        border.color: "#6BEAFC"
+                        border.width: dp(5)
+                        radius: dp(10)
+                        width: dp(130)
+                        height: parent.height
+                        color: "#FFFFFF"
+
+                        SimpleRow{
+
+                            anchors.fill: parent
+                            onSelected: {
+                                console.log(database.returnProductRecord(ProductModel.getProductId(productsListview.currentIndex)));
+                                console.log("Hello world");
+                                console.log(ItemModel.updateModel(ProductModel.getProductId(productsListview.currentIndex)))
+                                navigationStack.push(pageInfo, {productID:database.returnProductRecord(ProductModel.getProductId(productsListview.currentIndex))})
+
+
                             }
 
-
-                            AppText{
-                                id:firstText
-                                anchors.top: img2.bottom
-                                text: " Hypoglycemic"
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                font.bold: true
-                                font.pixelSize: sp(16)
+                            DropShadow {
+                                anchors.fill: rectProduct
+                                horizontalOffset: 3
+                                verticalOffset: 3
+                                radius: 8.0
+                                samples: 17
+                                color: "#6BEAFC"
+                                source: rectProduct
                             }
 
-                            AppText{
-                                id:secondText
-                                anchors.top: firstText.bottom
-                                text: " Herbal Capsules"
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                font.bold: true
-                                font.pixelSize: sp(12)
-                            }
-
-                            AppText{
-                                id:thirdText
-                                anchors.top: secondText.bottom
-                                text: " Anti-aging protien"
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                font.pixelSize: sp(10)
-                                color: "#034083"
-                            }
-
-                            AppText{
-                                id:forthText
-                                anchors.top: thirdText.bottom
+                            Rectangle{
+                                id:upperImage
+                                radius: dp(10)
+                                width : parent.width
+                                height: parent.height * 0.65
+                                anchors.top: parent.top
                                 anchors.topMargin: dp(10)
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                font.bold: true
-                                text: " UGX 230,000"
-                                font.pixelSize: sp(16)
-                                color: "#034083"
+                                anchors.leftMargin: dp(10)
+                                anchors.rightMargin: dp(10)
+                                anchors.bottomMargin: dp(5)
+                                color: "transparent"
+
+                                AppImage{
+                                    id:imgProduct
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    source: ImagePath
+                                    width: parent.width * 0.8
+                                    height: parent.height * 0.8
+                                    fillMode: Image.PreserveAspectCrop
+                                    layer.enabled: true
+                                }
                             }
 
-                            onClicked: {
-                                navigationStack.push(pageInfo)
-                            }
-                        }
 
+                            Rectangle{
+                                id:lowerText
+                                radius: dp(10)
+                                width  : parent.width
+                                height: parent.height - upperImage.height
+                                anchors.bottom: parent.bottom
+                                color: "transparent"
 
-                    }
-                    Rectangle {
-                        color: '#FFFFFF'
-                        Layout.fillWidth: true
-                        Layout.fillHeight:  true
-                        Layout.minimumWidth: parent.width * 0.329
-                        Layout.preferredWidth: parent.width * 0.329
-                        Layout.maximumWidth: parent.width * 0.329
-                        Layout.minimumHeight: parent.height
+                                AppText {
+                                    id:productName
+                                    anchors.top: imgProduct.bottom
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    text: ProductName
+                                    font.bold: true
+                                    font.pixelSize: sp(15)
+                                }
 
+                                AppText{
+                                    id:productText
+                                    anchors.top: productName.bottom
+                                    text: ProductText
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    font.pixelSize: sp(13)
+                                    color: "#A1A1A1"
+                                }
 
-                        AppButton{
-                            id:button2
-                            anchors.top: parent
-                            width: parent.width
-                            height: 200
-
-                            AppImage {
-                                id: img3
-                                anchors.top: parent
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                source: '../../assets/product2_auto_x1.png'
-                                width: parent.width
-                                height: button2.height
-                                fillMode: Image.PreserveAspectCrop
-                                layer.enabled: true
-                            }
-
-                            onClicked: {
-                                navigationStack.push(pageInfo)
-                            }
-                        }
-
-
-                        AppText{
-                            id:text1
-                            anchors.top: button2.bottom
-                            text: " Keto Actives"
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            font.bold: true
-                            font.pixelSize: sp(16)
-                        }
-
-                        AppText{
-                            id:text2
-                            anchors.top: text1.bottom
-                            text: " Herbal Capsules"
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            font.bold: true
-                            font.pixelSize: sp(12)
-                        }
-
-                        AppText{
-                            id:text3
-                            anchors.top: text2.bottom
-                            text: " Weight loss regimen"
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            font.pixelSize: sp(10)
-                            color: "#034083"
-                        }
-
-                        AppText{
-                            id:text4
-                            anchors.top: text3.bottom
-                            anchors.topMargin: dp(10)
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            font.bold: true
-                            text: " UGX 120,000"
-                            font.pixelSize: sp(16)
-                            color: "#034083"
-                        }
-                    }
-
-                    Rectangle {
-                        color: '#FFFFFF'
-                        Layout.fillWidth: true
-                        Layout.fillHeight:  true
-                        Layout.minimumWidth: parent.width * 0.329
-                        Layout.preferredWidth: parent.width * 0.329
-                        Layout.maximumWidth: parent.width * 0.329
-                        Layout.minimumHeight: parent.height
-
-
-                        AppButton{
-                            id:button3
-                            anchors.top: parent
-                            width: parent.width
-                            height: 200
-
-                            AppImage {
-                                id: img4
-                                anchors.top: parent
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                source: '../../assets/product4_auto_x1.png'
-                                width: parent.width
-                                height: button3.height
-                                fillMode: Image.PreserveAspectCrop
-                                layer.enabled: true
+                                AppText{
+                                    id: productCost
+                                    anchors.top: productText.bottom
+                                    anchors.topMargin: dp(5)
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    font.bold: true
+                                    color: "#034083"
+                                    text: Cost
+                                    font.pixelSize: sp(15)
+                                }
                             }
 
-                            onClicked: {
-                                navigationStack.push(pageInfo)
-                            }
                         }
-
-
-                        AppText{
-                            id:text5
-                            anchors.top: button3.bottom
-                            text: "Calcium Iron &"
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            font.bold: true
-                            font.pixelSize: sp(15)
-                        }
-
-                        AppText{
-                            id:text6
-                            anchors.top: text5.bottom
-                            text: "Zinc Capsules"
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            font.bold: true
-                            font.pixelSize: sp(12)
-                        }
-
-                        AppText{
-                            id:text7
-                            anchors.top: text6.bottom
-                            text: " Building strong bones"
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            font.pixelSize: sp(10)
-                            color: "#034083"
-                        }
-
-                        AppText{
-                            id:text8
-                            anchors.top: text7.bottom
-                            anchors.topMargin: dp(10)
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            font.bold: true
-                            color: "#034083"
-                            text: " UGX 85,000"
-                            font.pixelSize: sp(16)
-                        }
-
                     }
                 }
             }
@@ -538,7 +437,6 @@ Page {
                             anchors.left: parent.left
                             anchors.leftMargin: dp(20)
                             color: "#555555"
-
                         }
                     }
 
@@ -555,7 +453,7 @@ Page {
                             text: "View All  " + IconType.arrowright
                             radius: 15
                             backgroundColor: "#E9FAFF"
-                            textColor : "#034083"
+                            textColor : "#0098C8"
                             fontCapitalization : Font.Capitalize
                             borderColor : "#E9FAFF"
                             borderWidth: 1
@@ -572,9 +470,7 @@ Page {
                         }
                     }
                 }
-
             }
-
         }
         // End of Middle Section
 
@@ -742,7 +638,7 @@ Page {
                     icon: IconType.questioncircle
                 }
 
-//                currentTab : NavigationItem
+                //                currentTab : NavigationItem
                 NavigationItem {
                     id:navItem2
                     title: "Locate Us"
