@@ -275,7 +275,7 @@ Page {
                     color: "#E9FAFF"
 
                     ListPage {
-                        height: row.height
+//                        height: row.height
                         model: AppButton {
                             text: IconType.arrowright + "  Swipe to Buy "
                             backgroundColor: "#000000"
