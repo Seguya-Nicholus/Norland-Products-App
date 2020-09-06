@@ -7,6 +7,8 @@
 #include <QDebug>
 
 #include "database.h"
+#include "productsmodel.h"
+#include "itemmodel.h"
 
 
 // uncomment this line to add the Live Client Module and use live reloading with your custom C++ code
@@ -50,8 +52,13 @@ int main(int argc, char *argv[])
     database.createDbPath();
     database.connectToDataBase();
 
+    ProductsModel *model = new ProductsModel();
+    ItemModel *model1 = new ItemModel();
+
 
     engine.rootContext()->setContextProperty("database", &database);
+    engine.rootContext()->setContextProperty("ProductModel", model);
+    engine.rootContext()->setContextProperty("ItemModel", model1);
 
     return app.exec();
 }

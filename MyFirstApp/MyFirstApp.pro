@@ -40,7 +40,9 @@ DEPLOYMENTFOLDERS += assetsFolder
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    database.cpp
+    database.cpp \
+    itemmodel.cpp \
+    productsmodel.cpp
 
 
 android {
@@ -74,4 +76,6 @@ DISTFILES += \
     qml/pages/TestimonialsList.qml
 
 HEADERS += \
-    database.h
+    database.h \
+    itemmodel.h \
+    productsmodel.h
