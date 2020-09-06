@@ -9,6 +9,9 @@
 #include <QFile>
 #include <QDate>
 #include <QDebug>
+#include <string>
+#include <iostream>
+#include <cstdlib>
 
 #define DATABASE_HOSTNAME   "NorlandDataBase"
 #define DATABASE_NAME       "Norland.db"
@@ -37,8 +40,11 @@ private:
 
 public slots:
     bool insertIntoUsersTable(QString UserName,QString PhoneNumber,QString Password,QString Country);
-    bool insertIntoProductsTable(QByteArray Image,QString ProductName,QString ProductText,QString Cost);
+    bool insertIntoProductsTable(QString ProductID,QByteArray ImagePath,QString ProductName,QString ProductText,QString Cost);
     bool loginUser(QString PhoneNumber, QString Password);
+    QString  getUsername(QString PhoneNumber, QString Password);
+    bool returnProductRecord(const int id); // Returning records from the Products table on its id
+
 
 signals:
 
