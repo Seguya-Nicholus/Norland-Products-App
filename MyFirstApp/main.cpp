@@ -9,6 +9,9 @@
 #include "database.h"
 #include "productsmodel.h"
 #include "itemmodel.h"
+#include "mycartmodel.h"
+#include "testimonialmodel.h"
+#include "eventsmodel.h"
 
 
 // uncomment this line to add the Live Client Module and use live reloading with your custom C++ code
@@ -49,16 +52,21 @@ int main(int argc, char *argv[])
 
     //Instantiate the Database Object to Create Database
     Database database;
-    database.createDbPath();
+//    database.createDbPath();
     database.connectToDataBase();
 
     ProductsModel *model = new ProductsModel();
     ItemModel *model1 = new ItemModel();
-
+    MyCartModel *model2 = new MyCartModel();
+    TestimonialModel *model3 = new TestimonialModel();
+    EventsModel *model4 = new EventsModel();
 
     engine.rootContext()->setContextProperty("database", &database);
     engine.rootContext()->setContextProperty("ProductModel", model);
     engine.rootContext()->setContextProperty("ItemModel", model1);
+    engine.rootContext()->setContextProperty("CartModel", model2);
+    engine.rootContext()->setContextProperty("TestimonyModel", model3);
+    engine.rootContext()->setContextProperty("EventModel", model4);
 
     return app.exec();
 }

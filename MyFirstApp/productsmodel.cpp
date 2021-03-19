@@ -29,7 +29,6 @@ QHash<int, QByteArray> ProductsModel::roleNames() const
     roles[ProductCostRole] = "Cost";
 
     return roles;
-
 }
 
 

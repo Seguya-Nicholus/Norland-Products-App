@@ -48,15 +48,17 @@ Page {
                 anchors.top: parent.top
                 width: parent.width
                 height: parent.height/2
-                color: "#E9FAFF"
+                color: "#E9FAFF"                
+
 
                 // input Phone number
                 AppTextField {
                     id: loginUsername
-                    width: parent.width * 0.7
+                    width: parent.width * 0.9
                     placeholderText: qsTr(""+IconType.phone + "   Phone Number ")
                     anchors.top: parent.top
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.centerIn: parent
+//                    anchors.horizontalCenter: parent.horizontalCenter
                 }
             }
 
@@ -70,10 +72,10 @@ Page {
                 // input Password
                 AppTextField {
                     id: loginPassword
-                    width: parent.width * 0.7
+                    width: parent.width * 0.9
                     placeholderText: qsTr(""+IconType.lock + "   Password    ")
                     anchors.centerIn: parent
-                    anchors.horizontalCenter: parent.horizontalCenter
+//                    anchors.horizontalCenter: parent.horizontalCenter
                     borderColor: Theme.tintColor
                     borderWidth: !Theme.isAndroid ? dp(2) : 0
                     echoMode: TextInput.Password
@@ -102,9 +104,10 @@ Page {
                     anchors.bottom: parent.bottom
                     anchors.horizontalCenter: parent.horizontalCenter
                     minimumWidth: parent.width * 0.9
+                    minimumHeight: dp(42)
                     text: " Login "
-                    textSize:sp(15)
-                    radius: dp(18)
+                    textSize:sp(18)
+                    radius: dp(25)
                     fontCapitalization : Font.Capitalize
                     width: parent.width * 0.9
                     backgroundColor: "#005BAC"
@@ -113,7 +116,6 @@ Page {
 //                        navigationStack.push(dashboard)
                     }
                 }
-
             }
 
             Rectangle {
@@ -127,9 +129,10 @@ Page {
 
                 AppButton{
                     text: "Don't have an account ? <b>Sign Up</b>"
-                    textSize:sp(13)
+                    textSize:sp(15)
                     minimumWidth: parent.width * 0.9
-                    radius: dp(18)
+                    minimumHeight: dp(42)
+                    radius: dp(25)
                     backgroundColor: "#E9FAFF"
                     textColor : "#005BAC"
                     fontCapitalization : Font.Capitalize

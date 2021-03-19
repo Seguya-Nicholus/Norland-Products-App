@@ -41,8 +41,11 @@ DEPLOYMENTFOLDERS += assetsFolder
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
     database.cpp \
+    eventsmodel.cpp \
     itemmodel.cpp \
-    productsmodel.cpp
+    mycartmodel.cpp \
+    productsmodel.cpp \
+    testimonialmodel.cpp
 
 
 android {
@@ -68,14 +71,24 @@ DISTFILES += \
     android/gradle/wrapper/gradle-wrapper.properties \
     android/gradlew \
     android/gradlew.bat \
+    qml/components/DateTimePickerDialog2.qml \
+    qml/components/DateTimePickerDialog3.qml \
+    qml/pages/AddressPage.qml \
+    qml/pages/CheckoutOrderPage.qml \
     qml/pages/DashboardPage.qml \
+    qml/pages/EventsPage.qml \
+    qml/pages/MyCartList.qml \
     qml/pages/ProductAudio.qml \
     qml/pages/ProductInfoPage.qml \
     qml/pages/ProductsList.qml \
     qml/pages/SignupPage.qml \
-    qml/pages/TestimonialsList.qml
+    qml/pages/TestimonialsList.qml \
+    qml/pages/TreatmentPage.qml
 
 HEADERS += \
     database.h \
+    eventsmodel.h \
     itemmodel.h \
-    productsmodel.h
+    mycartmodel.h \
+    productsmodel.h \
+    testimonialmodel.h

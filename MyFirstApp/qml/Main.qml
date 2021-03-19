@@ -9,6 +9,14 @@ App {
 
     id: app
 
+//    onInitTheme: {
+//       Theme.colors.tintColor = "#1e73be"
+//       Theme.navigationBar.backgroundColor = Theme.colors.tintColor
+//       Theme.navigationBar.titleColor = "white"
+//     }
+    
+    
+
     MainItem {}
 }
 

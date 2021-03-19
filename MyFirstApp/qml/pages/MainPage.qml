@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3 as QQC2
 
 Page {
+
     preferredScreenOrientation: NativeUtils.ScreenOrientationPortrait
     readonly property  real contentPadding: dp(Theme.navigationBar.defaultBarItemPadding)
     property alias childNavigationStack : navStack
@@ -16,7 +17,7 @@ Page {
         id: navStack
 
         leftColumnIndex: 1
-        splitView: tablet
+             splitView: false
 
         Page {
             id: mainPage
@@ -129,16 +130,18 @@ Page {
                     AppButton {
                         anchors.centerIn: parent
                         minimumWidth: parent.width * 0.9
+                        minimumHeight: dp(42)
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: "Let's get Started     " + IconType.arrowleft
                         fontCapitalization : Font.Capitalize
-                        textSize:sp(15)
-                        radius: dp(18)
+                        textSize:sp(18)
+                        radius: dp(25)
                         width: parent.width * 0.9
                         backgroundColor: "#005BAC"
 
                         onClicked: {
                             mainPage.navigationStack.popAllExceptFirstAndPush(loginPage)
+
                         }
                     }
 

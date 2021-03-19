@@ -22,8 +22,9 @@ Page {
             id:topRect
             anchors.top: parent
             width: parent.width
-            height: parent.height /3
+            height: parent.height * 0.28
             color: "#E9FAFF"
+//            color: "black"
 
 
             AppImage {
@@ -45,83 +46,53 @@ Page {
             id:middleRect
             anchors.top: topRect.bottom
             width: parent.width
-            height: parent.height /3
+            height: parent.height - bottomRect.height - topRect.height
             color: "#E9FAFF"
 
+            Column {
+                anchors.fill: parent
+                anchors.margins: dp(12)
+                spacing: dp(12)
 
-            Rectangle{
-                id:rectUsername
-                anchors.top: parent.top
-                width: parent.width
-                height: parent.height/4
-                color: "#E9FAFF"
 
                 // input Username
                 AppTextField {
                     id: signupUsername
-                    width: parent.width * 0.7
+                    width: parent.width
                     placeholderText: qsTr(""+IconType.user + "   Username   ")
-                    anchors.centerIn: parent.Center
-                    anchors.horizontalCenter: parent.horizontalCenter
                 }
-
-            }
-
-            Rectangle {
-                id:rectPhoneNumber
-                anchors.top: rectUsername.bottom
-                width: parent.width
-                height: parent.height/4
-                color: "#E9FAFF"
 
                 // input Phone number
                 AppTextField {
                     id: signupPhoneNumber
-                    width: parent.width * 0.7
+                    width: parent.width
                     placeholderText: qsTr(""+IconType.phone + "   Phone Number ")
-                    anchors.top: parent.top
-                    anchors.horizontalCenter: parent.horizontalCenter
                 }
-            }
-
-            Rectangle {
-                id:rectPassword
-                anchors.top:  rectPhoneNumber.bottom
-                width: parent.width
-                height: parent.height/4
-                color: "#E9FAFF"
 
                 // input Password
                 AppTextField {
                     id: signupPassword
-                    width: parent.width * 0.7
+                    width: parent.width
                     placeholderText: qsTr(""+IconType.lock + "   Password    ")
-                    anchors.centerIn: parent
-                    anchors.horizontalCenter: parent.horizontalCenter
                     borderColor: Theme.tintColor
                     borderWidth: !Theme.isAndroid ? dp(2) : 0
                     echoMode: TextInput.Password
                 }
-            }
-
-
-            Rectangle{
-                id:rectCountry
-                anchors.bottom:  parent.bottom
-                width: parent.width
-                height: parent.height/4
-                color: "#E9FAFF"
-
 
                 // input Country of origin
                 AppTextField {
                     id: signupCountry
-                    width: parent.width * 0.7
+                    width: parent.width
                     placeholderText: qsTr(""+IconType.globe + "   Country                            ")
-                    anchors.centerIn: parent
-                    anchors.horizontalCenter: parent.horizontalCenter
                 }
 
+
+                // input Refferal Code
+                AppTextField {
+                    id: signupCode
+                    width: parent.width
+                    placeholderText: qsTr(""+IconType.mobile + "   Refferal Code                            ")
+                }
             }
         }
 
@@ -129,7 +100,7 @@ Page {
             id:bottomRect
             anchors.bottom:  parent.bottom
             width: parent.width
-            height: parent.height /3
+            height: parent.height * 0.25
             color: "#E9FAFF"
 
             Rectangle {
@@ -145,14 +116,15 @@ Page {
                     anchors.bottom:  parent.bottom
                     anchors.horizontalCenter: parent.horizontalCenter
                     minimumWidth: parent.width * 0.9
+                    minimumHeight: dp(42)
                     text: " Signup "
-                    textSize:sp(15)
-                    radius: dp(18)
+                    textSize:sp(18)
+                    radius: dp(25)
                     fontCapitalization : Font.Capitalize
                     width: parent.width * 0.9
                     backgroundColor: "#005BAC"
                     onClicked: {
-                        validateUserInputs(signupUsername.text,signupPhoneNumber.text,signupPassword.text,signupCountry.text)
+                        validateUserInputs(signupUsername.text,signupPhoneNumber.text,signupPassword.text,signupCountry.text,signupCode.text)
                     }
                 }
             }
@@ -168,9 +140,10 @@ Page {
 
                 AppButton {
                     text: "Have an account ? <b>Login.</b>"
-                    textSize:sp(13)
+                    textSize:sp(18)
                     minimumWidth: parent.width * 0.9
-                    radius: dp(18)
+                    minimumHeight: dp(42)
+                    radius: dp(25)
                     backgroundColor: "#E9FAFF"
                     textColor : "#005BAC"
                     fontCapitalization : Font.Capitalize
@@ -196,7 +169,7 @@ Page {
 
     MessageDialog {
         id: popup
-        title: "Create New User"
+        title: "Error"
         icon: StandardIcon.Critical
         text: ""
         standardButtons: StandardButton.Ok
@@ -205,7 +178,7 @@ Page {
     MessageDialog {
         id: popup1
         title: "Create New User"
-        icon: StandardIcon.Information
+//        icon: StandardIcon.Information
         text: ""
         standardButtons: StandardButton.Ok
     }
@@ -216,17 +189,18 @@ Page {
         signupPassword.text = ""
         signupPhoneNumber.text = ""
         signupCountry.text = ""
+        signupCode.text = ""
         //        signupUsername.focus
     }
 
 
     //
-    function validateUserInputs(userName,phoneNumber,password,country)
+    function validateUserInputs(userName,phoneNumber,password,country,code)
     {
-        if(userName !== "" && phoneNumber !== "" && password !== "" && country !== "")
+        if(userName !== "" && phoneNumber !== "" && password !== "" && country !== "" && code!== "")
         {
             //            database.insertIntoUsersTable(userName,phoneNumber,password,country);
-            if(database.insertIntoUsersTable(userName,phoneNumber,password,country))
+            if(database.insertIntoUsersTable(userName,phoneNumber,password,country,code))
             {
                 popup1.text = "User Created Successfully"
                 popup1.open()
